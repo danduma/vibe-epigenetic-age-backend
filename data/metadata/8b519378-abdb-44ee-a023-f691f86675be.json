@@ -1,0 +1,27 @@
+{
+  "id": "8b519378-abdb-44ee-a023-f691f86675be",
+  "original_filename": "gse41169_first_column.csv",
+  "upload_timestamp": "2025-02-20T18:08:26.019069",
+  "status": "complete",
+  "config": {
+    "clock_type": "horvath",
+    "imputation_strategy": "mean",
+    "normalize_data": true
+  },
+  "result": {
+    "predicted_age": 30.44926980124893,
+    "std_predicted_age": 0.0,
+    "num_samples": 1,
+    "individual_predictions": [
+      30.44926980124893
+    ],
+    "clock_type": "horvath",
+    "total_sites_used": 485577,
+    "config": {
+      "clock_type": "horvath",
+      "imputation_strategy": "mean",
+      "normalize_data": true
+    }
+  },
+  "completion_timestamp": "2025-02-20T18:08:28.698025"
+}

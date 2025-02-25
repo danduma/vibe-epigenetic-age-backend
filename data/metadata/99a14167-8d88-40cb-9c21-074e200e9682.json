@@ -1,0 +1,13 @@
+{
+  "id": "99a14167-8d88-40cb-9c21-074e200e9682",
+  "original_filename": "gse41169_first_column.csv",
+  "upload_timestamp": "2025-02-20T18:15:10.430150",
+  "status": "error",
+  "config": {
+    "clock_type": "horvath",
+    "imputation_strategy": "mean",
+    "normalize_data": true
+  },
+  "error": "process_methylation_data() got an unexpected keyword argument 'clock_type'",
+  "completion_timestamp": "2025-02-20T18:15:10.439660"
+}

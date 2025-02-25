@@ -1,0 +1,15 @@
+[project]
+name = "biolearn-gui"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Daniel Duma", email = "danielduma@gmail.com"},
+]
+dependencies = ["fastapi>=0.115.8", "uvicorn>=0.34.0", "python-multipart>=0.0.20", "sqlalchemy>=2.0.38", "psycopg2-binary>=2.9.10", "pydantic>=2.10.6", "celery>=5.4.0", "redis>=5.2.1", "python-jose[cryptography]>=3.4.0", "passlib[bcrypt]>=1.7.4", "biolearn>=0.7.0", "seaborn>=0.13.2"]
+requires-python = "==3.10.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
