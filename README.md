@@ -1,6 +1,6 @@
 # BioLearn Web Interface
 
-A web-based interface for the BioLearn Python library that allows users to upload methylation data and obtain analysis scores through an intuitive UI.
+A web-based interface for the BioLearn Python library that allows users to upload methylation data and obtain epigenetic clock analysis scores through an intuitive UI.
 
 ## Features
 
@@ -9,56 +9,36 @@ A web-based interface for the BioLearn Python library that allows users to uploa
 - RESTful API for managing samples and retrieving results
 - Status tracking for uploaded samples
 - Error handling and validation
+- Support for multiple epigenetic clocks (Horvath, Hannum, PhenoAge)
+- Statistical analysis of methylation data
 
 ## Technical Stack
 
 ### Backend
 - FastAPI (Python web framework)
-- Celery (Asynchronous task queue)
-- Redis (Message broker and result backend)
-- PostgreSQL (Database)
 - SQLAlchemy (ORM)
+- BioLearn Python library (v0.7.0+)
+- Pydantic for data validation
+- Celery for asynchronous tasks (configured)
+- Redis for task queue (configured)
 
 ## Setup
 
 ### Prerequisites
 
-- Python 3.8+
-- PostgreSQL
-- Redis
+- Python 3.10
+- PDM (Python dependency manager)
 
 ### Environment Setup
 
-1. Create a PostgreSQL database:
-```bash
-createdb biolearn
-```
-
-2. Install dependencies:
+1. Install dependencies:
 ```bash
 pdm install
 ```
 
-3. Set up environment variables (optional):
-```bash
-export REDIS_URL="redis://localhost:6379/0"
-export DATABASE_URL="postgresql://postgres:postgres@localhost/biolearn"
-```
-
 ### Running the Application
 
-1. Start Redis server:
-```bash
-redis-server
-```
-
-2. Start Celery worker:
-```bash
-cd backend
-celery -A app.core.celery_app worker --loglevel=info
-```
-
-3. Start the FastAPI server:
+1. Start the FastAPI server:
 ```bash
 cd backend
 uvicorn app.main:app --reload
@@ -72,17 +52,24 @@ Once the server is running, you can access the API documentation at:
 
 ## API Endpoints
 
-- `POST /api/upload` - Upload a methylation data file
-- `GET /api/samples` - List all samples
+- `POST /api/upload` - Upload a methylation data file with configuration options
+- `GET /api/samples` - List all samples with optional pagination and status filtering
 - `GET /api/samples/{sample_id}` - Get details of a specific sample
-- `PUT /api/samples/{sample_id}` - Update sample details
+- `GET /api/samples/{sample_id}/result` - Get analysis results for a specific sample
 
 ## File Format
 
 The application accepts CSV files containing methylation matrices. The expected format is:
-- Each row represents a sample
-- Each column represents a methylation site
-- Values should be between 0 and 1
+- Each row represents a CpG site (methylation probe)
+- Each column represents a sample
+- Values should be beta values between 0 and 1
+
+## Epigenetic Clocks
+
+The application currently supports the following epigenetic clocks:
+- Horvath's Clock (2013)
+- Hannum's Clock (2013)
+- PhenoAge Clock (Levine et al., 2018)
 
 ## Error Handling
 
@@ -91,10 +78,12 @@ The application includes comprehensive error handling for:
 - Processing failures
 - Database errors
 - File system errors
+- Individual clock failures (other clocks will still run)
 
 ## Security Considerations
 
 - Input validation for all file uploads
 - Rate limiting on API endpoints
 - Secure file storage with cleanup
-- CORS configuration for frontend integration 
+- CORS configuration for frontend integration
+- Authentication and authorization (configured) 
