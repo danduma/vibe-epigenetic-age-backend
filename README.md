@@ -16,11 +16,8 @@ A web-based interface for the BioLearn Python library that allows users to uploa
 
 ### Backend
 - FastAPI (Python web framework)
-- SQLAlchemy (ORM)
 - BioLearn Python library (v0.7.0+)
 - Pydantic for data validation
-- Celery for asynchronous tasks (configured)
-- Redis for task queue (configured)
 
 ## Setup
 
