@@ -74,7 +74,7 @@ __pypackages__/
 # Poetry
 poetry.lock 
 
-data/
+
 .vscode/
 __pycache__/
 */__pycache__/
